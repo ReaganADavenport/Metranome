@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Metranome from './Metranome';
+// import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ReactDOM.render(<Metranome/>, document.getElementById('root'));
+// registerServiceWorker();
+
+
+
+class App extends Component {
+  state = {
+    playing: false,
+    count: 0,
+    bpm: 100,
+    beatsPerMeasure: 4
+  };
+  
+  render(){
+    let bpm = 100;
+    let playing = false;
+
+    return (
+        <div className="App">
+        <div className="bpm-slider">
+        <div>{bpm} BPM</div>
+        <input type="range" min="60" max="240" value={bpm} />
+        </div>
+        <button>{playing ? 'Stop' : 'Start'}</button>
+        </div>
+    );
+};
 }
 
 export default App;
